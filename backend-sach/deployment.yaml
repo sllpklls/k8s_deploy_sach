@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-sach
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-sach
+  template:
+    metadata:
+      labels:
+        app: backend-sach
+    spec:
+      containers:
+        - name: backend-sach
+          image: hoangnghiathai01/backend-sach:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Production"
+            - name: ConnectionStrings__DefaultConnection
+              value: "Server=db12651.public.databaseasp.net; Database=db12651; User Id=db12651; Password=5Xe_w2?CS=a3; Encrypt=True; TrustServerCertificate=True; MultipleActiveResultSets=True;"
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "500m"
+            limits:
+              memory: "1Gi"
+              cpu: "1000m"

@@ -1,0 +1,17 @@
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: vps-pool
+  namespace: metallb-system
+spec:
+  addresses:
+  - 103.159.50.232/32
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: vps-adv
+  namespace: metallb-system
+spec:
+  ipAddressPools:
+  - vps-pool
